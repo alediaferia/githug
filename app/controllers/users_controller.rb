@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   layout 'user'
   # GET /:username.:format
   def show
-    @repos = []
+    
   end
 
   # PATCH/PUT /:username.:format

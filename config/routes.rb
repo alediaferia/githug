@@ -7,4 +7,6 @@ Rails.application.routes.draw do
       match 'complete' => 'users#complete', via: [:get, :patch], :as => :complete
     end
   end
+
+  resources :interests
 end
