@@ -12,6 +12,7 @@ class User
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   has_one :identity, dependent: :delete
+  has_one :classifier, dependent: :delete
 
   ## Database authenticatable
   field :email,              type: String, default: ""
@@ -83,6 +84,14 @@ class User
       identity.save!
     end
     user
+  end
+
+  def repos
+    Github.new(oauth_token: self.access_token).repos.list user: self.username
+  end
+
+  def languages
+    self.repos.map {|repo| repo.languages(self.access_token)}
   end
 
   def email_verified?

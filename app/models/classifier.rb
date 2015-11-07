@@ -4,5 +4,5 @@ class Classifier
 
   belongs_to :user
 
-  field :instance, type: Moped::BSON::Binary
+  field :instance, type: BSON::Binary
 end
