@@ -3,4 +3,6 @@ class Classifier
   include Mongoid::Attributes::Dynamic
 
   belongs_to :user
+
+  field :instance, type: Moped::BSON::Binary
 end
