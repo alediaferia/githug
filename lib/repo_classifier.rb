@@ -1,4 +1,5 @@
 require 'lrclassifier'
+require 'github_api'
 
 class RepoClassifier < LRClassifier
 
