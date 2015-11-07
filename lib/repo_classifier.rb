@@ -15,8 +15,8 @@ class RepoClassifier < LRClassifier
   #
   # fact is a value between 0 and 1
   def collect_train_data(features, fact)
-    langs.keys.each { |k| @used_keys.add?(k) }
-    @t_train_data.push([langs, fact])
+    features.keys.each { |k| @used_features.add?(k) }
+    @t_train_data.push([features, fact])
   end
 
   def train!
@@ -25,7 +25,7 @@ class RepoClassifier < LRClassifier
       row = Array.new
       row << 0
       row << d[1]
-      @used_keys.each { |k|
+      @used_features.each { |k|
         if d[0].include?(k)
           row << d[0][k]
         else
@@ -47,7 +47,7 @@ class RepoClassifier < LRClassifier
 
       row = []
       row << "#{repo.owner}/#{repo.name}"
-      @used_keys.each { |k|
+      @used_features.each { |k|
         if langs.include?(k)
           row << langs[k]
         else
