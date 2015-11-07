@@ -41,11 +41,11 @@ class RepoClassifier < LRClassifier
   def eval(repos)
     tmp_class_data = []
     repos.each do |repo|
-      langs = Github.repos.languages(user: $cf_user, repo: repo.name)
+      langs = Github.repos.languages(user: repo.owner, repo: repo.name)
       langs = langs.body
 
       row = []
-      row << "#{$cf_user}/#{repo.name}"
+      row << "#{repo.owner}/#{repo.name}"
       @used_keys.each { |k|
         if langs.include?(k)
           row << langs[k]
@@ -55,6 +55,12 @@ class RepoClassifier < LRClassifier
       }
       tmp_class_data.push row
     end
-    results = classify(tmp_class_data)
+    results = classify(tmp_class_data).to_a
+
+    interesting_repos = []
+    0.upto results.length-1 do |i|
+      interesting_repos << [tmp_class_data[i][0], results[i][0]]
+    end
+    interesting_repos
   end
 end
