@@ -58,4 +58,32 @@ namespace :classifier do
     user_record.classifier.save
     user_record.save
   end
+
+  desc 'Classifies randomly ~1000 repositories and stores them in the database for the user'
+  task :classify, [:username] => :environment do |_, args|
+    user_record = User.find_by(username: args.username)
+    if !user_record.classifier
+      puts "Cannot fiend classifier for user: train one first, please"
+      break false
+    end
+    # now we are going to randomly pick at most 1000 repositories for classifying them
+    # for the specified user
+    repos = (0..Repository.count-1).sort_by{rand}.slice(0, 1000).collect! { |i| Repository.skip(i).first }.reject{ |repo| repo.owner['login'] == args.username }
+
+
+    Github.configure do |c|
+      c.user = args.username
+      c.oauth_token = user_record.access_token
+    end
+
+    classifier = user_record.classifier.loaded_instance
+    classifier.rank(repos).each do |repo|
+      r = Repository.find_by(full_name: "#{repo[0]}")
+      interest = Interest.new
+      interest.repository = r
+      interest.rank = repo[1]
+      interest.save
+      user_record.interests.append(interest)
+    end
+  end
 end

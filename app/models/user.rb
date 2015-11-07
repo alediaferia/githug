@@ -13,6 +13,7 @@ class User
 
   has_one :identity, dependent: :delete
   has_one :classifier, dependent: :delete
+  has_many :interests, dependent: :delete
 
   ## Database authenticatable
   field :email,              type: String, default: ""

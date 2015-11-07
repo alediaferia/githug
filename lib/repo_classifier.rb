@@ -39,14 +39,14 @@ class RepoClassifier < LRClassifier
     train
   end
 
-  def eval(repos)
+  def rank(repos)
     tmp_class_data = []
     repos.each do |repo|
-      langs = Github.repos.languages(user: repo.owner, repo: repo.name)
+      langs = Github.repos.languages(user: repo.owner['login'], repo: repo.name)
       langs = langs.body
 
       row = []
-      row << "#{repo.owner}/#{repo.name}"
+      row << "#{repo.owner['login']}/#{repo.name}"
       @used_features.each { |k|
         if langs.include?(k)
           row << langs[k]

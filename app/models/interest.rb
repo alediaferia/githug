@@ -1,8 +1,8 @@
 class Interest
   include Mongoid::Document
 
-  has_many :users
-  has_many :repositories
+  belongs_to :user
+  has_one :repository
 
   field :rank, type: Float
 end
