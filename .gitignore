@@ -12,6 +12,7 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 
+config/omniauth.yml
 config/initializers/secret_token.rb
 
 ## Environment normalisation:
