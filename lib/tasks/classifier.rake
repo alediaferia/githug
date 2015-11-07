@@ -68,8 +68,7 @@ namespace :classifier do
     end
     # now we are going to randomly pick at most 1000 repositories for classifying them
     # for the specified user
-    repos = (0..Repository.count-1).sort_by{rand}.slice(0, 1000).collect! { |i| Repository.skip(i).first }.reject{ |repo| repo.owner['login'] == args.username }
-
+    repos = (0..Repository.count-1).sort_by{rand}.slice(0, 500).collect! { |i| Repository.skip(i).first }.reject{ |repo| repo.owner['login'] == args.username }
 
     Github.configure do |c|
       c.user = args.username
