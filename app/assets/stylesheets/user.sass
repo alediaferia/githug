@@ -1,107 +1,73 @@
 @import bootstrap-sprockets
 @import bootstrap
 @import font-awesome
+@import button
 
-#wrapper
-  padding-left: 0
-  -webkit-transition: all 0.5s ease
-  -moz-transition: all 0.5s ease
-  -o-transition: all 0.5s ease
-  transition: all 0.5s ease
 
-#wrapper.toggled
-  padding-left: 90px
+html
+  position: relative
+  min-height: 100%
 
-#sidebar-wrapper
-  z-index: 1000
+body
+  font-family: 'Montserrat',"Helvetica Neue",Helvetica,Arial,sans-serif
+  font-size: 17px
+  margin: 0 0 2em 0
+  line-height: 1.6
+  background: #FAFAFA
+
+.container
+  width: 970px
+
+.navbar
+  padding: 15px 0
+  height: 83px
+  border-bottom: 1px solid #F3F3F3
+  background: #fff
+
+.page-wrapper
+  margin-top: 100px
+
+.avatar
+  margin: 0 auto
+
+.close
+  font-size: 30px !important
   position: fixed
-  left: 90px
-  width: 0
-  height: 100%
-  margin-left: -90px
-  overflow-y: auto
-  background: #72ACAB
-  border-right: 1px solid #eceff1
-  -webkit-transition: all 0.5s ease
-  -moz-transition: all 0.5s ease
-  -o-transition: all 0.5s ease
-  transition: all 0.5s ease
+  top: 15px
+  right: 15px
+  color: #444
+  opacity: 1
+  font-weight: 200
 
-#wrapper.toggled #sidebar-wrapper
-  width: 90px
-
-#page-content-wrapper
-  width: 100%
-  position: absolute
-  padding: 15px
-
-#wrapper.toggled #page-content-wrapper
-  position: absolute
-  margin-right: -90px
-
-/* Sidebar Styles */
-
-.sidebar-nav
-  position: absolute
-  top: 0
-  width: 90px
-  margin: 0
-  padding: 0
-  list-style: none
-
-.sidebar-nav li
-  text-align: center
-  line-height: 40px
-
-  .bottom
-    position: fixed
-    bottom: 20px
-    left: 35px
-
-.sidebar-nav li a
+input[type="search"],
+input[type="text"],
+input[type="password"]
   display: block
-  text-decoration: none
-  color: #fff
+  height: 40px
+  width: 100%
+  padding: 0
+  border-radius: 2px
+  outline: none
+  box-sizing: border-box
+  -webkit-appearance: none
+  font-size: 16px
+  text-indent: 10px
+  font-weight: 400
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  vertical-align: bottom
+  position: relative
 
-.sidebar-nav li a:hover
-  text-decoration: none
-  color: #fff
-  background: rgba(255,255,255,0.2)
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="password"]:focus
+  border-color: #CACACA
 
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus
-  text-decoration: none
+.panel
+  box-shadow: none
+  border-radius: 0
+  border: 1px solid #edeeee
 
-.sidebar-nav > .sidebar-brand
-  height: 65px
-  font-size: 18px
-  line-height: 60px
-
-.sidebar-nav > .sidebar-brand a
-  color: #fff
-
-.sidebar-nav > .sidebar-brand a:hover
-  color: #fff
-  background: none
-
-
-@media(min-width:768px)
-  #wrapper
-    padding-left: 90px
-
-  #wrapper.toggled
-    padding-left: 0
-
-  #sidebar-wrapper
-    width: 90px
-
-  #wrapper.toggled #sidebar-wrapper
-    width: 0
-
-  #page-content-wrapper
-    padding: 20px
-    position: relative
-
-  #wrapper.toggled #page-content-wrapper
-    position: relative
-    margin-right: 0
+  .description
+    margin-top: 15px
+    text-align: justify
