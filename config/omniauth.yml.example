@@ -1,0 +1,20 @@
+development: &development
+  github:
+    app_id:
+    secret:
+    scope: "user,repo"
+
+test:
+ <<: *development
+
+production:
+  github:
+    app_id:
+    secret:
+    scope: "user,repo"
+
+staging:
+  github:
+    app_id:
+    secret:
+    scope: "user,repo"

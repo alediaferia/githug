@@ -1,0 +1,50 @@
+.navbar.navbar-static-top
+section.jumbotron.text-center
+  .container
+    h1.jumbotron-heading GitHug
+    p.lead.text-muted Take your GitHub profile to the next level. We select the best repository for you. Enjoy.
+    p
+      = button_to omniauth_authorize_path(User.new, 'github', signin: true), id: "github-login", class: 'btn btn-lg'
+        i.fa.fa-github
+          '  Continue With GitHub
+
+.repos.text-muted
+  .container
+    .row
+      .card
+        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
+        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      .card
+        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
+        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      .card
+        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
+        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      .card
+        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
+        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      .card
+        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
+        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      .card
+        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
+        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      .card
+        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
+        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      .card
+        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
+        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      .card
+        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
+        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+
+footer.text-muted
+  .container
+    p.pull-right
+      a href="#"  Back to top
+    p Album example is © Bootstrap, but please download and customize it for yourself!
+    p
+      | New to Bootstrap?
+      a href="../../"  Visit the homepage
+      | or read our
