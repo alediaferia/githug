@@ -10,7 +10,9 @@ namespace :import do
   def store_data(github_config)
     basic_auth = "#{github_config['app_id']}:#{github_config['secret']}"
     client = GitHub::Repo.new(basic_auth)
-    repos = client.list
+
+    last_id = Repository.order_by(id: 'desc').first.try(:id)
+    repos = client.list(last_id ? last_id : nil)
     since = repos.last['id']
 
     while since do
