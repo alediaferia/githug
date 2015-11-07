@@ -91,7 +91,13 @@ class User
   end
 
   def languages
-    self.repos.map {|repo| repo.languages(self.access_token)}
+    languages = []
+    self.repos.each do|repo|
+      github = Github.new(oauth_token: self.access_token)
+      owner, repo = repo['full_name'].split("/")
+      languages.push (github.repos.languages owner, repo).body
+    end
+    languages.inject{|memo, el| memo.merge( el ){|k, old_v, new_v| old_v + new_v}}
   end
 
   def email_verified?
