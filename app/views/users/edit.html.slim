@@ -4,7 +4,7 @@
 .page-wrapper
 	.row
 	  .col-md-offset-1.col-md-10.col-lg-offset-1.col-lg-10
-	  	h2
+	  	h3
 	  		| Edit Profile
 
 	  	p
@@ -16,5 +16,5 @@
 						.controls
 							= f.text_field :email, class: 'form-control input-lg no-border-radius', placeholder: 'Your Email', required: true
 					.actions
-					  = f.submit 'Save', class: 'btn btn-success btn-fixed'
+					  = f.submit 'Save', class: 'btn btn-warning btn-orange btn-fixed'
 					  = link_to 'Cancel', user_path(@user), class: 'btn btn-secondary btn-fixed', style: 'margin-left: 10px'
