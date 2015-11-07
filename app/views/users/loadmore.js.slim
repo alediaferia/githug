@@ -1,0 +1,7 @@
+| $('.list-repositories').append('
+= escape_javascript(render(partial: "repositories", locals: { :@repositories => @repositories }))
+| ');
+
+- if @stop_loading
+  | window.finished = true;
+  | $('#loadmore').hide();
