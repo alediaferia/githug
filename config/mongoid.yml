@@ -144,7 +144,3 @@ production:
       database: heroku_q070m6qf
       hosts:
         - ds029814.mongolab.com:29814
-      options:
-        read:
-          mode: :primary
-        max_pool_size: 1
