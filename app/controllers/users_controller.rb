@@ -8,8 +8,6 @@ class UsersController < ApplicationController
   def show
     interests = (0..current_user.interests.count-1).sort_by{rand}.slice(0, 10).collect! { |i| current_user.interests.skip(i).first }
     @repos = interests.map(&:repository)
-
-    puts "REPOS #{@repos}"
   end
 
   # PATCH/PUT /:username.:format
