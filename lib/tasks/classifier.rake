@@ -26,7 +26,11 @@ namespace :classifier do
 
     # fetching user's repositories
     Github.repos(user: args.username).list.each do |repo|
-      langs = Github.repos.languages user: args.username, repo: repo.name
+      begin
+        langs = Github.repos.languages user: args.username, repo: repo.name
+      rescue
+        next
+      end
       langs = langs.body
 
       classifier.collect_train_data(normalize_repo_features(langs), 0.9)
@@ -38,14 +42,24 @@ namespace :classifier do
       owner, name = repo.name.split('/')
       starring = Github.activity.starring.starring?(user: owner, repo: name)
       if starring
-        classifier.collect_train_data(normalize_repo_features(Github.repos.languages(user: owner, repo: name).body), 1)
+        begin
+          langs = Github.repos.languages user: owner, repo: name
+        rescue
+          next
+        end
+        classifier.collect_train_data(normalize_repo_features(langs.body), 1)
       else
-        classifier.collect_train_data(normalize_repo_features(Github.repos.languages(user: owner, repo: name).body), 0.1)
+        classifier.collect_train_data(normalize_repo_features(langs.body), 0.1)
       end
     end
 
     Github.activity.starring.starred.body.each { |repo|
-      classifier.collect_train_data(normalize_repo_features(Github.repos.languages(user: repo.owner.login, repo: repo.name).body), 1)
+      begin
+        langs = Github.repos.languages user: repo.owner.login, repo: repo.name
+      rescue
+        next
+      end
+      classifier.collect_train_data(normalize_repo_features(langs.body), 1)
     }
 
     # now we can train the classifier
