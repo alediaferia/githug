@@ -139,9 +139,11 @@ test:
 production:
   clients:
     default:
-      database: r15_team40_production
+      user: githug
+      password: githug
+      database: heroku_q070m6qf
       hosts:
-        - localhost:27017
+        - ds029814.mongolab.com:29814
       options:
         read:
           mode: :primary
