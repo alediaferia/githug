@@ -143,6 +143,7 @@ GEM
       omniauth (~> 1.2)
     origin (2.1.1)
     orm_adapter (0.5.0)
+    parallel (1.6.1)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -250,6 +251,7 @@ DEPENDENCIES
   mongoid-slug
   omniauth
   omniauth-github
+  parallel
   rails (= 4.2.3)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

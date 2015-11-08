@@ -37,6 +37,7 @@ gem 'omniauth-github'
 gem 'mongoid-slug'
 gem 'sidekiq'
 gem 'whenever'
+gem 'parallel'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

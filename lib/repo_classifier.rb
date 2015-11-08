@@ -41,7 +41,7 @@ class RepoClassifier < LRClassifier
 
   def rank(repos)
     tmp_class_data = []
-    repos.each do |repo|
+    Parallel.map(repos, in_threads: 8) do |repo|
       langs = Github.repos.languages(user: repo.owner['login'], repo: repo.name)
       langs = langs.body
 
