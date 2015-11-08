@@ -3,14 +3,14 @@ section.jumbotron.text-center
     .intro
       = image_tag "static/logo.png", class: 'img img-responsive'
         ' GitHug
-    p.lead The simplest, faster and lovely way to find what’s hot on GitHub. For you.
+    p.lead The simplest, fastest and lovely way to find what’s hot on GitHub. For you.
     p
       = button_to omniauth_authorize_path(User.new, 'github', signin: true), id: "github-login", class: 'btn btn-lg btn-github'
         i.fa.fa-github
           '  Continue With GitHub
 
 .steps.text-muted
-  .steps-title Three simple step to take your github experience to the next level
+  .steps-title Three simple step to take your GitHub experience to the next level
   .container.steps-wrapper
     .row
       .col-lg-10.col-lg-offset-1
@@ -20,7 +20,7 @@ section.jumbotron.text-center
               = image_tag "static/1.svg"
               .caption.text-center
                 h3 1 step
-                p Log in with GitHub,
+                p Log in with GitHub
           .col-sm-6.col-md-4
             .thumbnail
               = image_tag "static/2.svg"
