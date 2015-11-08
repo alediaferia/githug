@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # ruby version
-ruby "2.2.0"
+ruby "2.2.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
@@ -40,6 +40,8 @@ gem 'mongoid-slug'
 gem 'sidekiq'
 gem 'whenever'
 gem 'parallel'
+
+gem 'sinatra', :require => nil
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

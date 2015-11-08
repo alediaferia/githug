@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :interests
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/monitoring/sidekiq'
 end
