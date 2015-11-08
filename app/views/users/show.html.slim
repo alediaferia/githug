@@ -2,21 +2,28 @@ a#toTop.btn.btn-secondary
   i.fa.fa-chevron-up
 
 .page-wrapper
-  .alert.alert-warning.alert-dismissible.fade.in role="alert"
-    button.close aria-label="Close" data-dismiss="alert" type="button"
-      span aria-hidden="true"  ×
-    strong Holy guacamole!
-    | Best check yo self, you're not looking too good.
-
   .row
     .col-md-12
+      - unless @repos.empty?
+        .alert.alert-warning.alert-dismissible.fade.in role="alert"
+          button.close aria-label="Close" data-dismiss="alert" type="button"
+            span aria-hidden="true"  ×
+          | We found
+          strong = " #{@repos.size} "
+          | that may interest you.
 
-      .panel.panel-default
-        .panel-heading
-          a href=""
-            i.fa.fa-github  mojombo/grit1
-        .panel-body
-          p.description
-            ' Grit is no longer maintained. Check out libgit2/rugged.** Grit gives you object oriented read/write access to Git repositories via Ruby.
-          p.action
-            a.btn.btn-default details
+
+
+            .panel.panel-default
+              .panel-heading
+                a href=""
+                  i.fa.fa-github  mojombo/grit1
+              .panel-body
+                p.description
+                  ' Grit is no longer maintained. Check out libgit2/rugged.** Grit gives you object oriented read/write access to Git repositories via Ruby.
+                p.action
+                  a.btn.btn-default details
+      - else
+      
+        .center
+          i.fa.fa-clock-o.fa-5x

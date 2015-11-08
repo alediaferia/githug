@@ -41,25 +41,31 @@ class RepoClassifier < LRClassifier
 
   def rank(repos)
     tmp_class_data = []
-    Parallel.map(repos, in_threads: 8) do |repo|
-      langs = Github.repos.languages(user: repo.owner['login'], repo: repo.name)
-      langs = langs.body
+    repos.each do |repo|
+      begin
+        langs = Github.repos.languages(user: repo.owner['login'], repo: repo.name)
+        langs = langs.body
 
-      row = []
-      row << "#{repo.owner['login']}/#{repo.name}"
-      @used_features.each { |k|
-        if langs.include?(k)
-          row << langs[k]
-        else
-          row << 0
-        end
-      }
-      tmp_class_data.push row
+        row = []
+        row << "#{repo.owner['login']}/#{repo.name}"
+        @used_features.each { |k|
+          if langs.include?(k)
+            row << langs[k]
+          else
+            row << 0
+          end
+        }
+        tmp_class_data.push row
+      rescue Exception
+        next
+      end
     end
-    results = classify(tmp_class_data).to_a
 
+    return [] if tmp_class_data.empty?
+
+    results = classify(tmp_class_data).to_a
     interesting_repos = []
-    0.upto results.length-1 do |i|
+    0.upto results.length - 1 do |i|
       interesting_repos << [tmp_class_data[i][0], results[i][0]]
     end
     interesting_repos
