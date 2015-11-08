@@ -137,10 +137,4 @@ test:
         max_pool_size: 1
 
 production:
-  clients:
-    default:
-      user: githug
-      password: githug
-      database: heroku_q070m6qf
-      hosts:
-        - ds029814.mongolab.com:29814
+  uri: mongodb://githug:githug@ds029814.mongolab.com:29814/heroku_q070m6qf 
