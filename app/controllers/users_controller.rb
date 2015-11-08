@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @results = []
     Parallel.map(repositories, in_threads: 8) do |repo|
       repo.langs = repo.languages(@user.access_token).keys.map(&:downcase).join(", ")
-      repo.stars = repo.stargazers(@user.access_token).size
+      repo.stars = repo.stargazers_count(@user.access_token).to_i
       @results.push repo
     end
 

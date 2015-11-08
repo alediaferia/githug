@@ -3,9 +3,9 @@
     .alert.alert-warning.alert-dismissible.fade.in role="alert"
       button.close aria-label="Close" data-dismiss="alert" type="button"
         span aria-hidden="true"  ×
-      | We found
-      strong = " #{@results.size} / #{@user.interests.size} "
-      | that may interest you.
+      | Here
+      strong = " #{@results.size} "
+      | of the repos we believe might interest you. Refresh to view more
 
     - @results.each do |repo|
       .panel.panel-default

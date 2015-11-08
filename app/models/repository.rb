@@ -30,6 +30,19 @@ class Repository
     JSON.parse(stargazers.body)
   end
 
+  def stargazers_count(oauth_token = nil)
+    owner, repo = full_name.split("/")
+    url =
+     if oauth_token
+       "https://api.github.com/repos/#{owner}/#{repo}?oauth_token=#{oauth_token}"
+     else
+       "https://api.github.com/repos/#{owner}/#{repo}"
+     end
+    stargazers = Faraday.get(url)
+    JSON.parse(stargazers.body)['stargazers_count']
+
+  end
+
   def forks(oauth_token = nil)
     github =
      if oauth_token
