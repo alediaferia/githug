@@ -106,4 +106,6 @@ namespace :classifier do
       ) if repo[1] >= 0.7
     end
   end
+
+  task :classify, [:username] => [:train, :clasify]
 end
