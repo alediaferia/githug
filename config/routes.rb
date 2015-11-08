@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users, :path => "/" do
     collection do
       match 'complete' => 'users#complete', via: [:get, :patch], :as => :complete
+      get 'loadrepos' => 'users#loadrepos'
     end
   end
 

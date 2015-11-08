@@ -1,3 +1,5 @@
+require 'parallel'
+
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
@@ -6,8 +8,20 @@ class UsersController < ApplicationController
   layout 'user'
   # GET /:username.:format
   def show
+  end
+
+  def loadrepos
     interests = (0..current_user.interests.count-1).sort_by{rand}.slice(0, 10).collect! { |i| current_user.interests.skip(i).first }
-    @repos = interests ? interests.map(&:repository) : []
+    repositories = interests ? interests.map(&:repository) : []
+
+    @results = []
+    Parallel.map(repositories, in_threads: 8) do |repo|
+      repo.langs = repo.languages(@user.access_token).keys.map(&:downcase).join(", ")
+      repo.stars = repo.stargazers(@user.access_token).size
+      @results.push repo
+    end
+
+    @results
   end
 
   # PATCH/PUT /:username.:format

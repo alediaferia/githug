@@ -1,0 +1,4 @@
+| $('.loading').show();
+| $('.repositories').replaceWith('
+= escape_javascript(render(partial: "repositories", locals: { :@repositories => @repositories }))
+| ');

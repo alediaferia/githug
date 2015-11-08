@@ -4,26 +4,8 @@ a#toTop.btn.btn-secondary
 .page-wrapper
   .row
     .col-md-12
-      - unless @repos.empty?
-        .alert.alert-warning.alert-dismissible.fade.in role="alert"
-          button.close aria-label="Close" data-dismiss="alert" type="button"
-            span aria-hidden="true"  ×
-          | We found
-          strong = " #{@repos.size} / #{@user.interests.size} "
-          | that may interest you.
+      .repositories
+        h3.loading loading...
 
-        - @repos.each do |repo|
-          .panel.panel-default
-            .panel-heading
-              a href="#{repo.html_url}" target="_BLANK"
-                i.fa.fa-github = repo.full_name
-            .panel-body.repo
-              .description
-                = repo.description
-              .action
-                a.btn.btn-default details
-
-      - else
-
-        .center
-          i.fa.fa-clock-o.fa-5x
+javascript:
+  $.get('loadrepos')

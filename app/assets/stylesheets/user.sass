@@ -73,8 +73,13 @@ input[type="password"]:focus
   box-shadow: none
   border-radius: 0
   border: 1px solid #edeeee
-  min-height: 12em
+  min-height: 13em
   position: relative
+
+  .stars
+    position: absolute
+    right: 15px
+    top: 10px
 
   .description
     margin-top: 5px
@@ -82,15 +87,23 @@ input[type="password"]:focus
     font-size: 15px
     color: #2d2d2d
 
+  .languages
+    position: absolute
+    left: 15px
+    bottom: 15px
+    font-size: 15px
+    font-weight: bold
+
   .action
     position: absolute
-    right: 20px
-    bottom: 20px
+    right: 15px
+    bottom: 15px
 
 .panel-default
   .panel-heading
     border-bottom: 1px solid #f0f0f0
     background: #fff
+    color: #E55A45
 
 .center
   text-align: center
@@ -99,6 +112,11 @@ input[type="password"]:focus
 
   i
     color: #e1e1e1
+
+.loading
+  margin: 200px auto
+  text-align: center
+  color: #e1e1e1
 
 .pace
   -webkit-pointer-events: none
