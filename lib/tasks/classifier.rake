@@ -91,12 +91,12 @@ namespace :classifier do
     classifier = user_record.classifier.loaded_instance
     classifier.rank(repos).each do |repo|
       r = Repository.find_by(full_name: "#{repo[0]}")
-      Interest.find_or_create_by(
+
+      user_record.interests.append(Interest.find_or_create_by(
         repository: r,
         user: user_record,
         rank: repo[1]
-      )
-      user_record.interests.append(interest)
+      ))
     end
   end
 end
