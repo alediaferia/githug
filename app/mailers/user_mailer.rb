@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
   	@user = user
    	mail( from: "GitHug <notify@githug.com>" ,
           to: "#{@user.name} <#{@user.email}>",
-   				subject: "",
+   				subject: "Hugs",
    				layout: "mail")
   end
 end

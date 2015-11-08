@@ -1,0 +1,11 @@
+span style="font-size: 20px; color: #333; display: block"
+  = " Hi, #{@user.name}"
+
+br
+p.desc
+  ' Thank you for joining GitHug. We feel ready to start suggesting you awesome repositories to check on GitHub. Click here to start exploring.
+table
+  tr
+    td.padding
+      p
+        a.btn-primary href="http://githug.r15.railsrumble.com/#{@user.username}"  View on GitHug
