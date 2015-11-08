@@ -15,7 +15,7 @@ a#toTop.btn.btn-secondary
         - @repos.each do |repo|
           .panel.panel-default
             .panel-heading
-              a href="#{repo.url}"
+              a href="#{repo.html_url}" target="_BLANK"
                 i.fa.fa-github = repo.full_name
             .panel-body.repo
               .description
