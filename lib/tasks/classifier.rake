@@ -49,6 +49,11 @@ namespace :classifier do
         end
         classifier.collect_train_data(normalize_repo_features(langs.body), 1)
       else
+        begin
+          langs = Github.repos.languages user: owner, repo: name
+        rescue
+          next
+        end
         classifier.collect_train_data(normalize_repo_features(langs.body), 0.1)
       end
     end
