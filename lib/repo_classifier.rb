@@ -44,7 +44,7 @@ class RepoClassifier < LRClassifier
      Parallel.map(repos, in_threads: 8) do |repo|
       begin
         langs = Github.repos.languages(user: repo.owner['login'], repo: repo.name)
-        langs = langs.body
+        langs = langs.body.merge(stargazers_count: Github.repos.get(user: repo.owner['login'], repo: repo.name).stargazers_count)
 
         row = []
         row << "#{repo.owner['login']}/#{repo.name}"

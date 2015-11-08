@@ -25,13 +25,13 @@ namespace :classifier do
     classifier = RepoClassifier.new
 
     # fetching user's repositories
-    Github.repos(user: args.username).list.each do |repo|
+    Github.repos(user: args.username).list.reject {|repo| repo.fork == true }.each do |repo|
       begin
         langs = Github.repos.languages user: args.username, repo: repo.name
       rescue
         next
       end
-      langs = langs.body
+      langs = langs.body.merge(stargazers_count: repo.stargazers_count)
 
       classifier.collect_train_data(normalize_repo_features(langs), 0.9)
     end
@@ -47,14 +47,14 @@ namespace :classifier do
         rescue
           next
         end
-        classifier.collect_train_data(normalize_repo_features(langs.body), 1)
+        classifier.collect_train_data(normalize_repo_features(langs.body.merge(stargazers_count: Github.repos.get(user: owner, repo: name).stargazers_count)), 1)
       else
         begin
           langs = Github.repos.languages user: owner, repo: name
         rescue
           next
         end
-        classifier.collect_train_data(normalize_repo_features(langs.body), 0.1)
+        classifier.collect_train_data(normalize_repo_features(langs.body.merge(stargazers_count: Github.repos.get(user: owner, repo: name).stargazers_count)), 0.1)
       end
     end
 
@@ -64,7 +64,7 @@ namespace :classifier do
       rescue
         next
       end
-      classifier.collect_train_data(normalize_repo_features(langs.body), 1)
+      classifier.collect_train_data(normalize_repo_features(langs.body.merge(stargazers_count: repo.stargazers_count)), 1)
     }
 
     # now we can train the classifier
@@ -86,7 +86,9 @@ namespace :classifier do
     end
     # now we are going to randomly pick at most 1000 repositories for classifying them
     # for the specified user
-    repos = (0..Repository.count-1).sort_by{rand}.slice(0, 500).collect! { |i| Repository.skip(i).first }.reject{ |repo| repo.owner['login'] == args.username }
+    repos = (0..Repository.where(:fork => { :$ne => true }).count-1).sort_by{rand}.slice(0, 500).collect! { |i| Repository.where(:fork => { :$ne => true }).skip(i).first }.reject{ |repo|
+      repo.owner['login'] == args.username
+    }
 
     Github.configure do |c|
       c.user = args.username
