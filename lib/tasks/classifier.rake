@@ -5,7 +5,6 @@ def normalize_repo_features(features)
   normalized_features = {}
   features.each do |k, v|
     normalized_features[k] ||= 0
-
     rank = (v.to_i / 30)
     # following +10 is because we are owner for the repo
     normalized_features[k] = rank
@@ -78,9 +77,12 @@ namespace :classifier do
     classifier = user_record.classifier.loaded_instance
     classifier.rank(repos).each do |repo|
       r = Repository.find_by(full_name: "#{repo[0]}")
-      interest = Interest.new
-      interest.repository = r
-      interest.rank = repo[1]
+      interest =
+        Interest.new(
+          repository: r,
+          user: user_record,
+          rank: repo[1]
+        )
       interest.save
       user_record.interests.append(interest)
     end
