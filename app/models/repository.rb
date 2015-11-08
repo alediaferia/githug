@@ -5,7 +5,8 @@ class Repository
   attr_accessor :langs, :stars
 
   belongs_to :interest
-
+  has_one :language
+  
   def languages(oauth_token = nil)
     github =
      if oauth_token
