@@ -92,11 +92,11 @@ namespace :classifier do
     classifier.rank(repos).each do |repo|
       r = Repository.find_by(full_name: "#{repo[0]}")
 
-      user_record.interests.append(Interest.find_or_create_by(
+      Interest.find_or_create_by(
         repository: r,
         user: user_record,
         rank: repo[1]
-      ))
+      ) if repo[1] >= 0.7
     end
   end
 end
