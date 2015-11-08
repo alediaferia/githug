@@ -1,43 +1,37 @@
-.navbar.navbar-static-top
 section.jumbotron.text-center
   .container
-    h1.jumbotron-heading GitHug
-    p.lead.text-muted Take your GitHub profile to the next level. We select the best repository for you. Enjoy.
+    .intro
+      = image_tag "static/logo.png", class: 'img img-responsive'
+        ' GitHug
+    p.lead Find what’s hot on GitHub. For you.
     p
-      = button_to omniauth_authorize_path(User.new, 'github', signin: true), id: "github-login", class: 'btn btn-lg'
+      = button_to omniauth_authorize_path(User.new, 'github', signin: true), id: "github-login", class: 'btn btn-lg btn-github'
         i.fa.fa-github
           '  Continue With GitHub
 
 .repos.text-muted
   .container
     .row
-      .card
-        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
-        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-      .card
-        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
-        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-      .card
-        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
-        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-      .card
-        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
-        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-      .card
-        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
-        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-      .card
-        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
-        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-      .card
-        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
-        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-      .card
-        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
-        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-      .card
-        img alt=("Card image cap") data-src="holder.js/100%x280/thumb" /
-        p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      .col-lg-10.col-lg-offset-1
+        .row
+          .col-sm-6.col-md-4
+            .thumbnail
+              = image_tag "static/1.svg"
+              .caption.text-center
+                h3 1 step
+                p Lorem Ipsum is simply dummy text of the printing and typesetting industr.
+          .col-sm-6.col-md-4
+            .thumbnail
+              = image_tag "static/2.svg"
+              .caption.text-center
+                h3 2 step
+                p Lorem Ipsum is simply dummy text of the printing and typesetting industr.
+          .col-sm-6.col-md-4
+            .thumbnail
+              = image_tag "static/3.svg"
+              .caption.text-center
+                h3 3 step
+                p Lorem Ipsum is simply dummy text of the printing and typesetting industr.
 
 footer.text-muted
   .container
@@ -45,5 +39,5 @@ footer.text-muted
       a href="#"  Back to top
     p
       ' GitHug is a 48h app, passionately made by
-      strong Alessandro, Davide, Francesco e Giuseppe 
+      strong Alessandro, Davide, Francesco e Giuseppe
       ' for the #railsrumble — 2015 edition
