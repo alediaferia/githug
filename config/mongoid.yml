@@ -137,4 +137,6 @@ test:
         max_pool_size: 1
 
 production:
-  uri: mongodb://githug:githug@ds029814.mongolab.com:29814/heroku_q070m6qf 
+  clients:
+    default:
+      uri: mongodb://githug:githug@ds029814.mongolab.com:29814/heroku_q070m6qf 
