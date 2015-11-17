@@ -2,7 +2,7 @@ development: &development
   github:
     app_id: 8bc0e7244e86b7e188d4
     secret: 6468bb1b0681ed1118c97c52f9ca7f6d2519afa2
-    scope: "user,repo"
+    scope: "user,public_repo"
 
 test:
  <<: *development
@@ -11,10 +11,10 @@ production:
   github:
     app_id: 3f59dc8c943eae273454
     secret: 3fb792d15a61c18471411a95d88b0bd9e914f8fb
-    scope: "user,repo"
+    scope: "user,public_repo"
 
 staging:
   github:
     app_id:
     secret:
-    scope: "user,repo"
+    scope: "user,public_repo"

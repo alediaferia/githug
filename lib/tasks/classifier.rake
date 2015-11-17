@@ -23,9 +23,13 @@ namespace :classifier do
       UserMailer.interests(user).deliver_now
     else
       User.where(classified: false).each do |user|
-        user.classify
-        user.update_attributes(classified: true)
-        UserMailer.interests(user).deliver_now
+        begin
+          user.classify
+          user.update_attributes(classified: true)
+          UserMailer.interests(user).deliver_now
+        rescue Exception
+          next
+        end
       end
     end
   end
